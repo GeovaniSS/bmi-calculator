@@ -1,0 +1,185 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%; /*10px*/
+}
+
+body {
+    font-size: 1.6rem; 
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-size: 4.6rem;
+    color: #fff;
+    text-align: center;
+}
+
+h2 {
+    font-size: 3.6rem;
+    color: #8238FF;
+}
+
+h3, h4, h5 {
+    color: #858585;
+}
+
+h3 {
+    font-size: 2.4rem;
+}
+
+h4 {
+    font-size: 2rem;
+}
+
+h5 {
+    font-size: 1.6rem;
+    font-weight: normal;
+}
+
+p {
+    font-size: 2.3rem;
+    color: #fff;
+    text-align: center;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 10vh 80vh 10vh; 
+}
+
+section#imc-result {
+    grid-column: 1/3;
+    grid-row: 2/3;
+    background: linear-gradient(45deg, #32315C, #350F73, #381278, #350F73, #4A2D9D);
+    padding: 4rem;
+}
+    
+section#imc-result h1#imc-status {
+        text-transform: uppercase;
+        font-size: 3.8rem;
+}
+section#imc-result h1#imc-status::after {
+        display: block;
+        content: '';
+        width: 100%;
+        height: 2px;
+        background-color: rgba(12, 12, 12, 0.164);
+}
+
+section#imc-result .imc-value--range {
+    display: block;
+    content: '';
+    width: 60%;
+    height: 35vh;
+    margin: 4rem auto;
+    border: double 15px transparent;
+    border-radius: 50%;
+    background-image: linear-gradient(#381278, #381278), radial-gradient(circle at left,  #6C63FF 30%, #8F00FF); /*Gradiente na borda*/
+    background-origin: border-box; 
+    background-clip: content-box, border-box;
+}
+section#imc-result .imc-value--range img {
+    width: 80%;
+}
+
+section#imc-calculation {
+    grid-column: 3/6;
+    grid-row: 2/3;
+    background-color: #F6F6FE;
+    padding: 4rem 8rem;
+    padding-right: 8rem;
+}
+
+section#imc-calculation .choose-gender {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+section#imc-calculation .gender {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background-color: #fff;
+    padding: 2rem 6rem;
+}
+
+section#imc-calculation .imc-container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+}
+
+section#imc-calculation .imc-text {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+section#imc-calculation .imc-view {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+section#imc-calculation .imc-validation {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+section#imc-calculation .slider-container {
+    width: 100%;
+}   
+.slider {
+    width: 100%;
+    -webkit-appearance: none; /*Remove o estilo padrão do input range*/
+    opacity: 0.7; /*Transparência para o efeito de hover*/
+}   
+.slider:hover {
+    opacity: 1;
+}
+/*O pseudo-elemento slider-thumb representa a bolinha do input range que o usuário pode mover para alterar o seu valor númerico*/
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /*Remove a bolinha padrão do input range*/
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+}
+/*O pseudo-elemento slider-runnable-track representa a faixa do input range que é alterada conforme o usuário move a bolinha do input*/
+.slider::-webkit-slider-runnable-track {
+    height: 20px;
+    background-color: #8238FF;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+
+section#imc-calculation button {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    background-color: #5F00FF;
+    opacity: 0.8;
+    color: #fff;
+    font-size: 2.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    margin-top: 2rem;
+}
+section#imc-calculation button:hover {
+    opacity: 1.0;
+}

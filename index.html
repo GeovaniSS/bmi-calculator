@@ -5,66 +5,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de IMC</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <header>
-        <h1 id="imc-status">Sobrepeso</h1>
-        <hr>
-    </header>
-
-    <section id="imc-result">
-        <div class="imc-value--range">
-            <picture>
-                <img src="" alt="">
-            </picture>
-        </div>
-        <p>Seu índice de massa corporal é de:</p>
-        <h1 id="imc-calculation--result">27.97 Kg/m<sup>2</sup></h1>
-    </section>
-
-    <section id="gender">
-        <div class="man">
-            <img src="" alt="">
-            <h3>Homem</h3>
-        </div>
-        <div class="woman">
-            <img src="" alt="">
-            <h3>Mulher</h3>
-        </div>
-    </section>
-
-    <section id="imc-calculation">
-        <div class="weight-container">
-            <div class="weight-text">
-                <h4>Peso:</h4>
-                <div class="weight-view">
-                    <h2 id="current-weight">95</h2>
-                    <h4>kg</h4>
+    <main>
+        <section id="imc-result">
+            <h1 id="imc-status">Sobrepeso</h1>
+            <div class="imc-value--range">
+                <picture>
+                    <img src="assets/img/pessoa.png" alt="">
+                </picture>
+            </div>
+            <p>Seu índice de massa corporal é de:</p>
+            <h1 id="imc-calculation--result">27.97 Kg/m<sup>2</sup></h1>
+        </section>
+        <section id="imc-calculation">
+            <div class="choose-gender">
+                <div class="gender">
+                    <img src="assets/img/man.png" alt="">
+                    <h3>Homem</h3>
+                </div>
+                <div class="gender">
+                    <img src="assets/img/woman.png" alt="">
+                    <h3>Mulher</h3>
                 </div>
             </div>
-            <input type="range" id="weight">
-            <div class="weight-validation">
-                <h5>0kg</h5>
-                <h5>200kg</h5>
-            </div>
-        </div>
-
-        <div class="height-container">
-            <div class="height-text">
-                <h4>Altura:</h4>
-                <div class="height-view">
-                    <h2 id="current-height">185</h2>
-                    <h4>cm</h4>
+            <div class="imc-container">
+                <div class="imc-text">
+                    <h3>Peso:</h3>
+                    <div class="imc-view">
+                        <h2 id="current-weight">95</h2>
+                        <h4>kg</h4>
+                    </div>
+                </div>
+                <div class="slider-container">
+                    <input type="range" id="weight" min="0" max="200" class="slider">
+                </div>
+                <div class="imc-validation">
+                    <h5>0kg</h5>
+                    <h5>200kg</h5>
                 </div>
             </div>
-            <input type="range" id="height">
-            <div class="height-validation">
-                <h5>0cm</h5>
-                <h5>250cm</h5>
+            <div class="imc-container">
+                <div class="imc-text">
+                    <h3>Altura:</h3>
+                    <div class="imc-view">
+                        <h2 id="current-height">185</h2>
+                        <h4>cm</h4>
+                    </div>
+                </div>
+                <div class="slider-container">
+                    <input type="range" id="height" min="0" max="250" class="slider">
+                </div>
+                <div class="imc-validation">
+                    <h5>0cm</h5>
+                    <h5>250cm</h5>
+                </div>
             </div>
-        </div>
-
-        <button>Calcular Imc</button>
-    </section>
+            <button>Calcular Imc</button>
+        </section>
+    </main>
+    <script src="./assets/js/main.js"></script>
 </body>
 </html>
