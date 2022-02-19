@@ -1,48 +1,72 @@
 const form = document.querySelector('.form')
 const inputWeight = form.querySelector('#weight') 
 const inputHeight = form.querySelector('#height') 
+const chooseGender = document.querySelectorAll('.gender')
+const [male, female] = chooseGender //Destructuring dos elementos da NodeList chooseGender
+
+/* Evento
+    - Adiciona a class active na .gender[0] se o usuário clicar em Homem 
+*/
+male.addEventListener('click', () => {
+    if (!male.classList.contains('active')) {
+        male.classList.add('active')
+    }
+    else {
+        male.classList.remove('active')
+    }
+})
+
+/* Evento
+    - Adiciona a class active na .gender[1] se o usuário clicar em Mulher
+*/
+female.addEventListener('click', () => {
+    if (!female.classList.contains('active')) {
+        female.classList.add('active')
+    }
+    else {
+        female.classList.remove('active')
+    }
+})
 
 /* Evento
     - Atualiza o Peso no HTML quando clicar no input range do Peso
 */
-inputWeight.addEventListener('click', () => {
-    const weight = Number(inputWeight.value)
+inputWeight.addEventListener('click', (e) => {
     const currentWeight = form.querySelector('#current-weight') //Peso atual
-    currentWeight.innerHTML = weight
+    currentWeight.innerHTML = Number(e.target.value) 
 })
 
 /* Evento
     - Atualiza a Altura no HTML quando clicar no input range da Altura
 */
-inputHeight.addEventListener('click', () => {
-    const height = Number(inputHeight.value)
+inputHeight.addEventListener('click', (e) => {
     const currentHeight = form.querySelector('#current-height') //Altura atual
-    currentHeight.innerHTML = height
+    currentHeight.innerHTML = Number(e.target.value)
 })
 
 /* Evento
     - Chamada para a função que atualiza o Peso no HTML quando uma tecla é pressionada
 */
 inputWeight.addEventListener('keydown', (e) => {
-    let weight = Number(inputWeight.value)
+    let weight = Number(e.target.value)
     const currentWeight = form.querySelector('#current-weight')
-    updateText(e, currentWeight, weight) //Chamada pra função que atualiza o Peso de acordo com a tecla pressionada
+    updateText(e, weight, currentWeight)
 })
 
 /* Evento
     - Chamada para a função que atualiza a Altura no HTML quando uma tecla é pressionada
 */
 inputHeight.addEventListener('keydown', (e) => {
-    let height = Number(inputHeight.value)
+    let height = Number(e.target.value)
     const currentHeight = form.querySelector('#current-height')
-    updateText(e, currentHeight, height) //Chamada pra função que atualiza a Altura de acordo com a tecla pressionada
+    updateText(e, height, currentHeight) 
 })
 
 /* Função
     - Incrementa o peso/altura se a tecla arrowRight for pressionada
     - Decrementa o peso/altura se a tecla arrowLeft for pressionada
 */
-function updateText(e, current, msg) {
+function updateText(e, msg, current) {
     if (e.keyCode === 39) {
         current.innerHTML = ++msg
     }
@@ -72,7 +96,7 @@ form.addEventListener('submit', (e) => {
 })
 
 /* Função
-    -   Calcula o IMC e retorna com duas casas decimais
+    - Calcula o IMC e retorna com duas casas decimais
 */
 function getImc(weight, height) {
     const imc = weight/height**2
@@ -80,7 +104,7 @@ function getImc(weight, height) {
 }
 
 /* Função
-    -   Retorna o status de acordo com o valor do IMC
+    - Retorna o status de acordo com o valor do IMC
 */
 function getImcStatus(imc) {
     const status = ['Magreza', 'Normal', 'Sobrepeso', 'Obesidade', 'Obesidade Grave']
@@ -93,8 +117,8 @@ function getImcStatus(imc) {
 }
 
 /* Função
-    -   Atualiza o resultado do IMC no HTML
-    -   Atualiza o nível/status do IMC no HTML
+    - Atualiza o resultado do IMC no HTML
+    - Atualiza o nível/status do IMC no HTML
 */
 function setImcResult(imc, imcStatus) {
     const imcResultText = document.querySelector('#imc')
