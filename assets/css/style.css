@@ -96,10 +96,8 @@ section#imc-calculation {
     grid-row: 2/3;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     background-color: #F6F6FE;
-    padding: 2rem 8rem;
-    padding-right: 8rem;
+    padding: 2rem 4rem;
 }
 
 section#imc-calculation .choose-gender {
@@ -123,6 +121,7 @@ section#imc-calculation .gender {
 }
 
 section#imc-calculation .gender.active {
+    margin: -0.3rem;
     border: 2px solid #8238FF;
     color: #8238FF;
 }
@@ -225,6 +224,7 @@ section#imc-calculation button:hover {
     }
 
     section#imc-calculation {
+        justify-content: center;
         padding: 2rem 4rem;
     }
 }
