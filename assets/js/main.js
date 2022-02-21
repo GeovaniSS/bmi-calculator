@@ -92,6 +92,7 @@ form.addEventListener('submit', (e) => {
     
     const imc = getImc(weight, height)
     const imcStatus = getImcStatus(imc)
+    setImcRange(imcStatus)
     setImcResult(imc, imcStatus)
 })
 
@@ -114,6 +115,39 @@ function getImcStatus(imc) {
     if (imc <= 29.9) return status[2]
     if (imc <= 39.9) return status[3]
     if (imc > 40) return status[4]
+}
+
+/* Função
+    - Muda a imagem de acordo com o status do IMC
+*/
+function setImcRange(imcStatus) {
+    const imcRange = document.createElement('img')
+    console.log(imcRange)
+    const container = document.querySelector('.imc-value--range')
+    container.innerHTML = ''
+    
+    switch (imcStatus) {
+        case 'Magreza':
+            imcRange.src = 'assets/img/mulher-nivel-imc/mulher-magreza.png'
+            break
+
+        case 'Normal':
+            imcRange.src = 'assets/img/mulher-nivel-imc/mulher-normal.png'
+            break
+
+        case 'Sobrepeso':
+            imcRange.src = 'assets/img/mulher-nivel-imc/mulher-sobrepeso.png'
+            break
+
+        case 'Obesidade':
+            imcRange.src = 'assets/img/mulher-nivel-imc/mulher-obesidade.png'
+            break
+
+        case 'Obesidade Grave': 
+            imcRange.src = 'assets/img/mulher-nivel-imc/mulher-obesidade-grave.png'
+            break
+    }   
+    container.appendChild(imcRange)
 }
 
 /* Função
