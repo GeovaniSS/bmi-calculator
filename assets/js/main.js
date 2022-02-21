@@ -1,32 +1,19 @@
 const form = document.querySelector('.form')
 const inputWeight = form.querySelector('#weight') 
 const inputHeight = form.querySelector('#height') 
-const chooseGender = document.querySelectorAll('.gender')
-const [male, female] = chooseGender //Destructuring dos elementos da NodeList chooseGender
+const genders = document.querySelectorAll('.gender')
 
 /* Evento
-    - Adiciona a class active na .gender[0] se o usuário clicar em Homem 
+    - Adiciona a class active no gênero que o usuário clicar
 */
-male.addEventListener('click', () => {
-    if (!male.classList.contains('active')) {
-        male.classList.add('active')
-    }
-    else {
-        male.classList.remove('active')
-    }
-})
-
-/* Evento
-    - Adiciona a class active na .gender[1] se o usuário clicar em Mulher
-*/
-female.addEventListener('click', () => {
-    if (!female.classList.contains('active')) {
-        female.classList.add('active')
-    }
-    else {
-        female.classList.remove('active')
-    }
-})
+for (let sex of genders) {
+    sex.addEventListener('click', () => {
+        for (let sex of genders) {
+            sex.classList.remove('active')
+        }
+        sex.classList.add('active')
+    })
+}
 
 /* Evento
     - Atualiza o Peso no HTML quando clicar no input range do Peso
@@ -122,32 +109,56 @@ function getImcStatus(imc) {
 */
 function setImcRange(imcStatus) {
     const imcRange = document.createElement('img')
-    console.log(imcRange)
-    const container = document.querySelector('.imc-value--range')
-    container.innerHTML = ''
+    const imcValueRange = document.querySelector('.imc-value--range')
+    imcValueRange.innerHTML = ''
     
-    switch (imcStatus) {
-        case 'Magreza':
-            imcRange.src = 'assets/img/mulher-nivel-imc/mulher-magreza.png'
-            break
-
-        case 'Normal':
-            imcRange.src = 'assets/img/mulher-nivel-imc/mulher-normal.png'
-            break
-
-        case 'Sobrepeso':
-            imcRange.src = 'assets/img/mulher-nivel-imc/mulher-sobrepeso.png'
-            break
-
-        case 'Obesidade':
-            imcRange.src = 'assets/img/mulher-nivel-imc/mulher-obesidade.png'
-            break
-
-        case 'Obesidade Grave': 
-            imcRange.src = 'assets/img/mulher-nivel-imc/mulher-obesidade-grave.png'
-            break
-    }   
-    container.appendChild(imcRange)
+    if (genders[0].classList.contains('active')) {
+        switch (imcStatus) {
+            case 'Magreza':
+                imcRange.src = 'assets/img/homem-nivel-imc/homem-magreza.png'
+                break
+    
+            case 'Normal':
+                imcRange.src = 'assets/img/homem-nivel-imc/homem-normal.png'
+                break
+    
+            case 'Sobrepeso':
+                imcRange.src = 'assets/img/homem-nivel-imc/homem-sobrepeso.png'
+                break
+    
+            case 'Obesidade':
+                imcRange.src = 'assets/img/homem-nivel-imc/homem-obesidade.png'
+                break
+    
+            case 'Obesidade Grave': 
+                imcRange.src = 'assets/img/homem-nivel-imc/homem-obesidade-grave.png'
+                break
+        }
+    }
+    if (genders[1].classList.contains('active')) {
+        switch (imcStatus) {
+            case 'Magreza':
+                imcRange.src = 'assets/img/mulher-nivel-imc/mulher-magreza.png'
+                break
+    
+            case 'Normal':
+                imcRange.src = 'assets/img/mulher-nivel-imc/mulher-normal.png'
+                break
+    
+            case 'Sobrepeso':
+                imcRange.src = 'assets/img/mulher-nivel-imc/mulher-sobrepeso.png'
+                break
+    
+            case 'Obesidade':
+                imcRange.src = 'assets/img/mulher-nivel-imc/mulher-obesidade.png'
+                break
+    
+            case 'Obesidade Grave': 
+                imcRange.src = 'assets/img/mulher-nivel-imc/mulher-obesidade-grave.png'
+                break
+        } 
+    }  
+    imcValueRange.appendChild(imcRange)
 }
 
 /* Função
