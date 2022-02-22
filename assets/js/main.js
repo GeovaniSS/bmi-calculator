@@ -3,7 +3,7 @@ const inputWeight = form.querySelector('#weight')
 const inputHeight = form.querySelector('#height') 
 const genders = document.querySelectorAll('.gender')
 
-/* Evento
+/* Loop/Node List
     - Adiciona a class active no gênero que o usuário clicar
 */
 for (let sex of genders) {
@@ -16,19 +16,21 @@ for (let sex of genders) {
 }
 
 /* Evento
-    - Atualiza o Peso no HTML quando clicar no input range do Peso
+    - Atualiza o Peso no HTML enquanto o usuário move a bolinha do input range
 */
-inputWeight.addEventListener('click', (e) => {
+inputWeight.addEventListener('mousemove', (e) => {
+    let weight = Number(e.target.value)
     const currentWeight = form.querySelector('#current-weight') //Peso atual
-    currentWeight.innerHTML = Number(e.target.value) 
+    currentWeight.innerHTML = weight++
 })
 
 /* Evento
-    - Atualiza a Altura no HTML quando clicar no input range da Altura
+    - Atualiza a Altura no HTML enquanto o usuário move a bolinha do input range
 */
-inputHeight.addEventListener('click', (e) => {
+inputHeight.addEventListener('mousemove', (e) => {
+    let height = Number(e.target.value)
     const currentHeight = form.querySelector('#current-height') //Altura atual
-    currentHeight.innerHTML = Number(e.target.value)
+    currentHeight.innerHTML = height++
 })
 
 /* Evento
@@ -37,7 +39,7 @@ inputHeight.addEventListener('click', (e) => {
 inputWeight.addEventListener('keydown', (e) => {
     let weight = Number(e.target.value)
     const currentWeight = form.querySelector('#current-weight')
-    updateText(e, weight, currentWeight)
+    updateValue(e, weight, currentWeight)
 })
 
 /* Evento
@@ -46,19 +48,19 @@ inputWeight.addEventListener('keydown', (e) => {
 inputHeight.addEventListener('keydown', (e) => {
     let height = Number(e.target.value)
     const currentHeight = form.querySelector('#current-height')
-    updateText(e, height, currentHeight) 
+    updateValue(e, height, currentHeight) 
 })
 
 /* Função
-    - Incrementa o peso/altura se a tecla arrowRight for pressionada
-    - Decrementa o peso/altura se a tecla arrowLeft for pressionada
+    - Incrementa o valor do peso/altura se a tecla arrowRight for pressionada
+    - Decrementa o valor do peso/altura se a tecla arrowLeft for pressionada
 */
-function updateText(e, msg, current) {
+function updateValue(e, value, current) {
     if (e.keyCode === 39) {
-        current.innerHTML = ++msg
+        current.innerHTML = ++value
     }
     if (e.keyCode === 37) {
-        current.innerHTML = --msg
+        current.innerHTML = --value
     }
 }
 
@@ -69,14 +71,10 @@ function updateText(e, msg, current) {
 form.addEventListener('submit', (e) => {
     e.preventDefault()
     
-    const inputWeight = e.target.querySelector('#weight')
-    const inputHeight = e.target.querySelector('#height')
-
     const weight = Number(inputWeight.value)
     const height = Number(inputHeight.value)/100 
     /*A altura é divida por 100 para ser calculada em metros*/
 
-    
     const imc = getImc(weight, height)
     const imcStatus = getImcStatus(imc)
     setImcRange(imcStatus)
@@ -105,7 +103,9 @@ function getImcStatus(imc) {
 }
 
 /* Função
-    - Muda a imagem de acordo com o status do IMC
+    - Define o personagem de acordo com o sexo escolhido pelo usuário
+    - Muda os estágios (magreza, normal, sobrepeso...) das imagens de acordo com o status do IMC
+    
 */
 function setImcRange(imcStatus) {
     const imcRange = document.createElement('img')
@@ -157,7 +157,7 @@ function setImcRange(imcStatus) {
                 imcRange.src = 'assets/img/mulher-nivel-imc/mulher-obesidade-grave.png'
                 break
         } 
-    }  
+    }
     imcValueRange.appendChild(imcRange)
 }
 
