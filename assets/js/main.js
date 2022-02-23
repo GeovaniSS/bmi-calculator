@@ -21,7 +21,7 @@ for (let sex of genders) {
 inputWeight.addEventListener('mousemove', (e) => {
     let weight = Number(e.target.value)
     const currentWeight = form.querySelector('#current-weight') //Peso atual
-    currentWeight.innerHTML = weight++
+    currentWeight.innerHTML = weight
 })
 
 /* Evento
@@ -30,7 +30,7 @@ inputWeight.addEventListener('mousemove', (e) => {
 inputHeight.addEventListener('mousemove', (e) => {
     let height = Number(e.target.value)
     const currentHeight = form.querySelector('#current-height') //Altura atual
-    currentHeight.innerHTML = height++
+    currentHeight.innerHTML = height
 })
 
 /* Evento
@@ -105,59 +105,49 @@ function getImcStatus(imc) {
 /* Função
     - Define o personagem de acordo com o sexo escolhido pelo usuário
     - Muda os estágios (magreza, normal, sobrepeso...) das imagens de acordo com o status do IMC
-    
 */
 function setImcRange(imcStatus) {
+    const status = imcStatus === 'Obesidade Grave' ? 'obesidadeGrave' : imcStatus.toLowerCase()
+    const defaultSex = genders[0].classList.contains('active')
+    
     const imcRange = document.createElement('img')
     const imcValueRange = document.querySelector('.imc-value--range')
     imcValueRange.innerHTML = ''
     
-    if (genders[0].classList.contains('active')) {
-        switch (imcStatus) {
-            case 'Magreza':
-                imcRange.src = 'assets/img/homem-nivel-imc/homem-magreza.png'
+    const man = {
+        magreza: 'assets/img/homem-nivel-imc/homem-magreza.png',
+        normal: 'assets/img/homem-nivel-imc/homem-normal.png',
+        sobrepeso: 'assets/img/homem-nivel-imc/homem-sobrepeso.png', 
+        obesidade: 'assets/img/homem-nivel-imc/homem-obesidade.png', 
+        obesidadeGrave: 'assets/img/homem-nivel-imc/homem-obesidade-grave.png'
+    }
+
+    const woman = {
+        magreza: 'assets/img/mulher-nivel-imc/mulher-magreza.png',
+        normal: 'assets/img/mulher-nivel-imc/mulher-normal.png',
+        sobrepeso: 'assets/img/mulher-nivel-imc/mulher-sobrepeso.png', 
+        obesidade: 'assets/img/mulher-nivel-imc/mulher-obesidade.png', 
+        obesidadeGrave: 'assets/img/mulher-nivel-imc/mulher-obesidade-grave.png'
+    }
+
+    if (defaultSex) {
+        for (let key in man) {
+            if (key === status) {
+                imcRange.src = man[key]
                 break
-    
-            case 'Normal':
-                imcRange.src = 'assets/img/homem-nivel-imc/homem-normal.png'
-                break
-    
-            case 'Sobrepeso':
-                imcRange.src = 'assets/img/homem-nivel-imc/homem-sobrepeso.png'
-                break
-    
-            case 'Obesidade':
-                imcRange.src = 'assets/img/homem-nivel-imc/homem-obesidade.png'
-                break
-    
-            case 'Obesidade Grave': 
-                imcRange.src = 'assets/img/homem-nivel-imc/homem-obesidade-grave.png'
-                break
+            }
         }
     }
-    if (genders[1].classList.contains('active')) {
-        switch (imcStatus) {
-            case 'Magreza':
-                imcRange.src = 'assets/img/mulher-nivel-imc/mulher-magreza.png'
+
+    if (!defaultSex) {
+        for (let key in woman) {
+            if (key === status) {
+                imcRange.src = woman[key]
                 break
-    
-            case 'Normal':
-                imcRange.src = 'assets/img/mulher-nivel-imc/mulher-normal.png'
-                break
-    
-            case 'Sobrepeso':
-                imcRange.src = 'assets/img/mulher-nivel-imc/mulher-sobrepeso.png'
-                break
-    
-            case 'Obesidade':
-                imcRange.src = 'assets/img/mulher-nivel-imc/mulher-obesidade.png'
-                break
-    
-            case 'Obesidade Grave': 
-                imcRange.src = 'assets/img/mulher-nivel-imc/mulher-obesidade-grave.png'
-                break
-        } 
+            }
+        }
     }
+
     imcValueRange.appendChild(imcRange)
 }
 
