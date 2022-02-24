@@ -200,7 +200,7 @@ section#imc-calculation button:hover {
     opacity: 1.0;
 }
 
-@media (max-height: 550px) {
+@media screen and (max-height: 550px), (orientation: portrait) {
     main {
         grid-template-rows: 0vh 100vh 0vh; 
     }
@@ -210,7 +210,7 @@ section#imc-calculation button:hover {
     }
 }
 
-@media (max-width: 1048px) {
+@media screen and (max-width: 1048px) {
     html {
         font-size: 55%;
     }  
@@ -229,7 +229,7 @@ section#imc-calculation button:hover {
     }
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     html {
         font-size: 50%;
     }
@@ -254,7 +254,7 @@ section#imc-calculation button:hover {
     }
 }
 
-@media (max-width: 462px) {
+@media screen and (max-width: 462px) {
     html {
         font-size: 46%;
     }
@@ -264,7 +264,7 @@ section#imc-calculation button:hover {
     }
 }
 
-@media (max-width: 360px) {
+@media screen and (max-width: 360px) {
     html {
         font-size: 44%;
     }
